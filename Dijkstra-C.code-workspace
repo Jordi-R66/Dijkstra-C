@@ -4,5 +4,10 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"*.py3": "python",
+			"stdbool.h": "c"
+		}
+	}
 }
