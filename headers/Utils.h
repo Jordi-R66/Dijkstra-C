@@ -38,3 +38,5 @@ struct Graph {
 typedef struct Graph Graph;
 
 // ---------------------------------------
+
+bool sommetcmp(Sommet* sA, Sommet* sB);
