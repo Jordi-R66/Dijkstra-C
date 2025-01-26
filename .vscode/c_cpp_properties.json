@@ -1,13 +1,28 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "Linux64",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c23"
+            "cStandard": "gnu23",
+            "compilerArgs": [
+                "-m64"
+            ]
+        },
+        {
+            "name": "Linux32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu23",
+            "compilerArgs": [
+                "-m32"
+            ]
         }
     ],
     "version": 4
