@@ -12,3 +12,6 @@ struct List {
 
 typedef struct List List;
 
+void initializeList(List* list, size_t initSize, size_t elementSize);
+void freeList(List* list);
+
