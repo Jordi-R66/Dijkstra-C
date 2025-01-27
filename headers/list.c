@@ -105,4 +105,6 @@ size_t shrinkToFit(List* list) {
 	}
 
 	resizeList(list, list->n_elements);
+
+	return list->capacity;
 }
