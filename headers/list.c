@@ -74,7 +74,7 @@ void removeElement(List* list, size_t index, bool shiftElements) {
 		size_t nBytesI = i * list->elementSize;
 		size_t nBytesJ = j * list->elementSize;
 
-		size_t bytesToCopy = (list->n_elements - (i + 1)) * list->elementSize;
+		size_t bytesToCopy = (list->n_elements - j) * list->elementSize;
 
 		memmove((int8_t*)list->elements + nBytesI, (int8_t*)list->elements + nBytesJ, bytesToCopy);
 
