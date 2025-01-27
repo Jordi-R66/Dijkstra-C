@@ -6,6 +6,7 @@ void initializeList(List* list, size_t initSize, size_t elementSize) {
 	list->capacity = initSize;
 	list->n_elements = 0;
 	list->elementSize = elementSize;
+	list->fragmented = false;
 
 	void* ptr = (void*)calloc(initSize, elementSize);
 
@@ -36,11 +37,12 @@ void resizeList(List* list, size_t newSize) {
 	if (ptr != NULL) {
 		list->elements = ptr;
 	} else {
+		fprintf(stderr, "Reallocation failure in `resizeList(%p, index)`\n", (void*)list);
 		exit(EXIT_FAILURE);
 	}
 }
 
-void addElement(List* list, size_t index, void* newElement) {
+void addElement(List* list, void* newElement) {
 	if ((list->n_elements + 1) >= list->capacity) {
 		resizeList(list, list->n_elements + 2);
 	}
@@ -53,6 +55,7 @@ void addElement(List* list, size_t index, void* newElement) {
 
 void removeElement(List* list, size_t index, bool shiftElements) {
 	if (index >= list->n_elements) {
+		fprintf(stderr, "Can't remove an element that is not in a list\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -74,11 +77,32 @@ void removeElement(List* list, size_t index, bool shiftElements) {
 		size_t bytesToCopy = (list->n_elements - (i + 1)) * list->elementSize;
 
 		memmove((int8_t*)list->elements + nBytesI, (int8_t*)list->elements + nBytesJ, bytesToCopy);
+
+		list->n_elements--;
+	} else {
+		list->fragmented |= true;
 	}
 }
 
 void replaceElement(List* list, size_t index, void* newElement) {
+	if (index >= list->capacity) {
+		fprintf(stderr, "Can't replace an element outside of a list\n");
+		exit(EXIT_FAILURE);
+	}
+
 	size_t nBytes = index * list->elementSize;
+
 	removeElement(list, index, false);
-	memset((int8_t*)list->elements + nBytes, newElement, list->elementSize);
+	memcpy((int8_t*)list->elements + nBytes, newElement, list->elementSize);
+
+	list->fragmented = false;
+}
+
+size_t shrinkToFit(List* list) {
+	if (list->fragmented) {
+		fprintf(stderr, "Can't shrink a list if it is fragmented\n");
+		exit(EXIT_FAILURE);
+	}
+
+	resizeList(list, list->n_elements);
 }
