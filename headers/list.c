@@ -26,3 +26,17 @@ void freeList(List* list) {
 	list->n_elements = 0;
 }
 
+void resizeList(List* list, size_t newSize) {
+	if (newSize < list->n_elements) {
+		newSize = list->n_elements;
+	}
+
+	void* ptr = (void*)realloc(list->elements, newSize);
+
+	if (ptr != NULL) {
+		list->elements = ptr;
+	} else {
+		exit(EXIT_FAILURE);
+	}
+}
+
