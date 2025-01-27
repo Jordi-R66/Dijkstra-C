@@ -22,4 +22,5 @@ void addElement(List* list, void* newElement);
 void removeElement(List* list, size_t index, bool shiftElements);
 void replaceElement(List* list, size_t index, void* newElement);
 
+size_t shrinkToFit(List* list);
 void copyList(List* listDest, List* listSrc);
