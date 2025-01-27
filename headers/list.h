@@ -20,3 +20,5 @@ void resizeList(List* list, size_t newSize);
 void addElement(List* list, size_t index, void* newElement);
 void removeElement(List* list, size_t index, bool shiftElements);
 void replaceElement(List* list, size_t index, void* newElement);
+
+void copyList(List* listDest, List* listSrc);
