@@ -110,3 +110,18 @@ size_t shrinkToFit(List* list) {
 
 	return list->capacity;
 }
+
+void copyList(List* listDest, List* listSrc) {
+	memset(listDest, listSrc, sizeof(listSrc));
+
+	void* ptr = calloc(listDest->capacity, listDest->elementSize);
+
+	if (ptr != NULL) {
+		listDest->elements = ptr;
+	} else {
+		free(ptr);
+		exit(EXIT_FAILURE);
+	}
+
+	memset(listDest->elements, listSrc->elements, listSrc->capacity * listSrc->elementSize);
+}
