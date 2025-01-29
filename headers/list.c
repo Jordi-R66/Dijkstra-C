@@ -13,6 +13,7 @@ void initializeList(List* list, size_t initSize, size_t elementSize) {
 	if (ptr != NULL) {
 		list->elements = ptr;
 	} else {
+		free(ptr);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -37,6 +38,7 @@ void resizeList(List* list, size_t newSize) {
 	if (ptr != NULL) {
 		list->elements = ptr;
 	} else {
+		free(ptr);
 		fprintf(stderr, "Reallocation failure in `resizeList(%p, index)`\n", (void*)list);
 		exit(EXIT_FAILURE);
 	}
