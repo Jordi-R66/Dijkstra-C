@@ -12,7 +12,7 @@ typedef enum TypeLien TypeLien;
 
 struct Sommet {
 	s_id_t id;
-	char* name;
+	string name;
 
 	double x, y, z;
 
