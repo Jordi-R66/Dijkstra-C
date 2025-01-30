@@ -33,7 +33,13 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	uint8_t colNumber = 0;
 	s_id_t currentEntry = 0;
 
+	Sommet work = {0, "", 0, 0, 0, (s_id_t*)NULL};
 
+	string current_id = (string)calloc(25, sizeof(char));
+
+	string current_x = (string)calloc(40, sizeof(char));
+	string current_y = (string)calloc(40, sizeof(char));
+	string current_z = (string)calloc(40, sizeof(char));
 
 	if (n_entries > 0) {
 
