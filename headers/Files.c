@@ -35,14 +35,33 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	Sommet work = {0, "", 0, 0, 0, (s_id_t*)NULL};
 
+	s_id_t id;
+
 	string current_id = (string)calloc(25, sizeof(char));
 
 	string current_x = (string)calloc(40, sizeof(char));
 	string current_y = (string)calloc(40, sizeof(char));
 	string current_z = (string)calloc(40, sizeof(char));
 
-	if (n_entries > 0) {
+	char c;
 
+	while (c != EOF) {
+		c = getc(fp);
+
+		if (c == EOF) {
+			break;
+		}
+
+		if (c == sep) {
+			colNumber++;
+		} else if (c == '\n') {
+
+			id = stol(current_id);
+
+			x = stod(current_x);
+			y = stod(current_y);
+			z = stod(current_z);
+		}
 	}
 }
 
