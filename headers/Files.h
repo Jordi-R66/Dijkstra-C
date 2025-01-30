@@ -3,4 +3,5 @@
 #include "commons.h"
 #include "list.h"
 
-void LoadVerticesFromTSV(char* filename, List* Vertices);
+void LoadVerticesFromTSV(string filename, List* Vertices);
+void LoadLinkFromTSV(string filename, List* Links);
