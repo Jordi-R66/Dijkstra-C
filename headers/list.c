@@ -3,10 +3,16 @@
 #include <string.h>
 
 void initializeList(List* list, size_t initSize, size_t elementSize) {
+	if (list->initialized) {
+		freeList(list);
+	}
+
 	list->capacity = initSize;
 	list->n_elements = 0;
 	list->elementSize = elementSize;
+
 	list->fragmented = false;
+	list->initialized = true;
 
 	void* ptr = (void*)calloc(initSize, elementSize);
 
@@ -19,6 +25,10 @@ void initializeList(List* list, size_t initSize, size_t elementSize) {
 }
 
 void freeList(List* list) {
+	if (!list->initialized) {
+		fprintf(stderr, "Can't free a list that was never initialized!\n");
+		exit(EXIT_FAILURE);
+	}
 	memset(list->elements, 0, list->capacity * list->elementSize);
 
 	free(list->elements);
@@ -26,6 +36,7 @@ void freeList(List* list) {
 	list->capacity = 0;
 	list->elementSize = 0;
 	list->n_elements = 0;
+	list->initialized = false;
 }
 
 void resizeList(List* list, size_t newSize) {

@@ -7,6 +7,7 @@ struct List {
 	size_t n_elements;
 	size_t elementSize;
 	bool fragmented;
+	bool initialized;
 
 	void* elements;
 };
