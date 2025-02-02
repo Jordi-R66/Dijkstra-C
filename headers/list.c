@@ -61,7 +61,7 @@ void addElement(List* list, void* newElement) {
 	}
 
 	size_t nBytes = list->n_elements * list->elementSize;
-	memset((int8_t*)list->elements + nBytes, newElement, list->elementSize);
+	memcpy((int8_t*)(list->elements + nBytes), newElement, list->elementSize);
 
 	list->n_elements++;
 }
@@ -134,7 +134,7 @@ size_t shrinkToFit(List* list) {
 }
 
 void copyList(List* listDest, List* listSrc) {
-	memset(listDest, listSrc, sizeof(listSrc));
+	memcpy(listDest, listSrc, sizeof(listSrc));
 
 	void* ptr = calloc(listDest->capacity, listDest->elementSize);
 
@@ -145,5 +145,5 @@ void copyList(List* listDest, List* listSrc) {
 		exit(EXIT_FAILURE);
 	}
 
-	memset(listDest->elements, listSrc->elements, listSrc->capacity * listSrc->elementSize);
+	memcpy(listDest->elements, listSrc->elements, listSrc->capacity * listSrc->elementSize);
 }
