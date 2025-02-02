@@ -86,6 +86,17 @@ void removeElement(List* list, size_t index, bool shiftElements) {
 	}
 }
 
+/*
+	Returns pointer to element in list as `void*`
+*/
+void* getElement(List* list, size_t index) {
+	if (index >= list->capacity) {
+		return NULL;
+	}
+
+	return list->elements + index * list->elementSize;
+}
+
 void replaceElement(List* list, size_t index, void* newElement) {
 	if (index >= list->capacity) {
 		fprintf(stderr, "Can't replace an element outside of a list\n");

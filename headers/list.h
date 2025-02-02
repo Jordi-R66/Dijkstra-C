@@ -20,6 +20,7 @@ void resizeList(List* list, size_t newSize);
 
 void addElement(List* list, void* newElement);
 void removeElement(List* list, size_t index, bool shiftElements);
+void* getElement(List* list, size_t index);
 void replaceElement(List* list, size_t index, void* newElement);
 
 size_t shrinkToFit(List* list);
