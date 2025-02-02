@@ -28,6 +28,10 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	size_t n_entries = CountLinesInFile(fp);
 
+	if (n_entries == 0) {
+		return;
+	}
+
 	initializeList(Vertices, n_entries, sizeof(Sommet));
 
 	uint8_t colNumber = 0;
@@ -36,6 +40,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	Sommet work = {0, "", 0, 0, 0, (s_id_t*)NULL};
 
 	s_id_t id;
+	double x, y, z;
 
 	string current_id = (string)calloc(25, sizeof(char));
 
@@ -47,8 +52,11 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	while (c != EOF) {
 		c = getc(fp);
+		printf("%c", c);
 
 		if (c == EOF) {
+			printf("\nEOF !!\n");
+			//fclose(fp);
 			break;
 		}
 
@@ -56,13 +64,15 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			colNumber++;
 		} else if (c == '\n') {
 
-			id = stol(current_id);
+			id = strtol(current_id, endptr, 10);
 
-			x = stod(current_x);
-			y = stod(current_y);
-			z = stod(current_z);
+			x = strtod(current_x, endptr);
+			y = strtod(current_y, endptr);
+			z = strtod(current_z, endptr);
 		}
 	}
+
+	fclose(fp);
 }
 
 void LoadLinkFromTSV(string filename, List* Links) {
