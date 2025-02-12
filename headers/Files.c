@@ -30,10 +30,7 @@ size_t CountLinesInFile(string filename) {
 void LoadVerticesFromTSV(string filename, List* Vertices) {
 	char** endptr;
 
-	printf("Counting entries...\n");
 	size_t n_entries = CountLinesInFile(filename);
-
-	printf("Here 354\n");
 
 	if (n_entries == 0) {
 		return;
@@ -41,9 +38,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	FILE* fp = fopen(filename, READONLY_MODE);
 
-	printf("Here 2\n");
 	initializeList(Vertices, n_entries, sizeof(Sommet));
-	printf("Here 22\n");
 
 	uint8_t colNumber = 0;
 	s_id_t currentEntry = 0;
@@ -67,7 +62,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 		if (c == EOF) {
 			printf("\nEOF !!\n");
-			//fclose(fp);
+			fclose(fp);
 			break;
 		}
 
