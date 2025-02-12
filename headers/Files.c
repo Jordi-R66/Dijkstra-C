@@ -6,7 +6,6 @@ const char sep = '\t';
 
 size_t CountLinesInFile(string filename) {
 	FILE* fp = fopen(filename, READONLY_MODE);
-	//printf("File opened for counting\n");
 	size_t n_entries = 0;
 
 	char c = 0;
@@ -19,10 +18,7 @@ size_t CountLinesInFile(string filename) {
 		}
 	}
 
-	//printf("Finished counting\n");
-
 	fclose(fp);
-	//printf("File closed after counting\n");
 
 	return n_entries;
 }
@@ -58,10 +54,8 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	while (c != EOF) {
 		c = getc(fp);
-		printf("%c", c);
 
 		if (c == EOF) {
-			//printf("\nEOF !!\n");
 			fclose(fp);
 			break;
 		}
