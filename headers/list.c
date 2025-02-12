@@ -3,6 +3,7 @@
 #include <string.h>
 
 void initializeList(List* list, size_t initSize, size_t elementSize) {
+	printf("List initialised ? %c\n", list->initialized ? 'Y' : 'N');
 	if (list->initialized) {
 		freeList(list);
 	}
@@ -19,6 +20,7 @@ void initializeList(List* list, size_t initSize, size_t elementSize) {
 	if (ptr != NULL) {
 		list->elements = ptr;
 	} else {
+		printf("Here 1");
 		free(ptr);
 		exit(EXIT_FAILURE);
 	}
@@ -29,6 +31,7 @@ void freeList(List* list) {
 		fprintf(stderr, "Can't free a list that was never initialized!\n");
 		exit(EXIT_FAILURE);
 	}
+
 	memset(list->elements, 0, list->capacity * list->elementSize);
 
 	free(list->elements);
@@ -49,6 +52,7 @@ void resizeList(List* list, size_t newSize) {
 	if (ptr != NULL) {
 		list->elements = ptr;
 	} else {
+		printf("Here 3");
 		free(ptr);
 		fprintf(stderr, "Reallocation failure in `resizeList(%p, index)`\n", (void*)list);
 		exit(EXIT_FAILURE);
@@ -141,6 +145,8 @@ void copyList(List* listDest, List* listSrc) {
 	if (ptr != NULL) {
 		listDest->elements = ptr;
 	} else {
+
+		printf("Here 4");
 		free(ptr);
 		exit(EXIT_FAILURE);
 	}

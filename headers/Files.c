@@ -4,35 +4,46 @@
 const char* READONLY_MODE = "r";
 const char sep = '\t';
 
-size_t CountLinesInFile(FILE* fp) {
+size_t CountLinesInFile(string filename) {
+	FILE* fp = fopen(filename, READONLY_MODE);
+	printf("File opened for counting\n");
 	size_t n_entries = 0;
 
-	char c;
+	char c = 0;
 
-	do {
+	while (c != EOF) {
 		c = fgetc(fp);
 
-		if (c == '\n') {
+		if (c == sep) {
 			n_entries++;
 		}
-	} while (c != EOF);
+	}
 
-	fseek(fp, 0, SEEK_SET);
+	printf("Finished counting\n");
+
+	fclose(fp);
+	printf("File closed after counting\n");
+
 	return n_entries;
 }
 
 void LoadVerticesFromTSV(string filename, List* Vertices) {
 	char** endptr;
 
-	FILE* fp = fopen(filename, READONLY_MODE);
+	printf("Counting entries...\n");
+	size_t n_entries = CountLinesInFile(filename);
 
-	size_t n_entries = CountLinesInFile(fp);
+	printf("Here 354\n");
 
 	if (n_entries == 0) {
 		return;
 	}
 
+	FILE* fp = fopen(filename, READONLY_MODE);
+
+	printf("Here 2\n");
 	initializeList(Vertices, n_entries, sizeof(Sommet));
+	printf("Here 22\n");
 
 	uint8_t colNumber = 0;
 	s_id_t currentEntry = 0;
