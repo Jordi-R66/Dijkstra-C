@@ -6,7 +6,7 @@ const char sep = '\t';
 
 size_t CountLinesInFile(string filename) {
 	FILE* fp = fopen(filename, READONLY_MODE);
-	printf("File opened for counting\n");
+	//printf("File opened for counting\n");
 	size_t n_entries = 0;
 
 	char c = 0;
@@ -19,16 +19,16 @@ size_t CountLinesInFile(string filename) {
 		}
 	}
 
-	printf("Finished counting\n");
+	//printf("Finished counting\n");
 
 	fclose(fp);
-	printf("File closed after counting\n");
+	//printf("File closed after counting\n");
 
 	return n_entries;
 }
 
 void LoadVerticesFromTSV(string filename, List* Vertices) {
-	char** endptr;
+	char* endptr;
 
 	size_t n_entries = CountLinesInFile(filename);
 
@@ -61,7 +61,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 		printf("%c", c);
 
 		if (c == EOF) {
-			printf("\nEOF !!\n");
+			//printf("\nEOF !!\n");
 			fclose(fp);
 			break;
 		}
@@ -70,11 +70,11 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			colNumber++;
 		} else if (c == '\n') {
 
-			id = strtol(current_id, endptr, 10);
+			id = strtol(current_id, &endptr, 10);
 
-			x = strtod(current_x, endptr);
-			y = strtod(current_y, endptr);
-			z = strtod(current_z, endptr);
+			x = strtod(current_x, &endptr);
+			y = strtod(current_y, &endptr);
+			z = strtod(current_z, &endptr);
 		}
 	}
 
