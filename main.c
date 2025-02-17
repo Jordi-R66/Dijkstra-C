@@ -13,7 +13,7 @@ void main(void) {
 	LoadVerticesFromTSV(filename, &Vertices);
 
 	printf("Vertices loaded\n");
-	freeList(&Vertices);
+	freeSommetList(&Vertices);
 
 	return;
 }

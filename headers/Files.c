@@ -1,6 +1,8 @@
 #include "Files.h"
 #include "DijkstraTypes.h"
 
+#include "string.h"
+
 const char* READONLY_MODE = "r";
 const char sep = '\t';
 
@@ -36,6 +38,16 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	initializeSommetList(Vertices, n_entries);
 
+	// Filling the list
+
+	for (size_t i = 0; i < n_entries; i++) {
+		Sommet newSommet;
+
+		newSommet.name = (string)calloc(30, sizeof(char));
+
+		addElement(Vertices, (void*)&newSommet);
+	}
+
 	uint8_t colNumber = 0;
 	s_id_t currentEntry = 0;
 
@@ -45,6 +57,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	double x, y, z;
 
 	string current_id = (string)calloc(25, sizeof(char));
+	string current_name = (string)calloc(30, sizeof(char));
 
 	string current_x = (string)calloc(40, sizeof(char));
 	string current_y = (string)calloc(40, sizeof(char));
@@ -61,6 +74,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			fclose(fp);
 
 			free(current_id);
+			free(current_name);
 			free(current_x);
 			free(current_y);
 			free(current_z);
@@ -70,9 +84,36 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			break;
 		}
 
+		/*
+		if (c != sep) {
+			switch (currentEntry) {
+				case 0:
+					current_id[iCol] = c;
+					break;
+
+				case 1:
+					current_id[iCol] = c;
+					break;
+
+				case 2:
+					current_id[iCol] = c;
+					break;
+
+				case 3:
+					current_id[iCol] = c;
+					break;
+
+				case 4:
+					current_id[iCol] = c;
+					break;
+			}
+		}
+		*/
+
 		if (c == sep) {
 			colNumber++;
 		} else if (c == '\n') {
+			colNumber = 0;
 
 			id = strtol(current_id, &endptr, 10);
 
@@ -84,6 +125,12 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	if (!fileClosed) {
 		fclose(fp);
+
+		free(current_id);
+		free(current_name);
+		free(current_x);
+		free(current_y);
+		free(current_z);
 	}
 }
 
