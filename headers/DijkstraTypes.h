@@ -46,3 +46,9 @@ bool sommetcmp(Sommet* sA, Sommet* sB);
 
 void initializeSommetList(List* list, size_t nElements);
 void initializeLienList(List* list, size_t nElements);
+
+void freeSommetList(List* list);
+void freeLienList(List* list);
+
+Sommet* getSommet(List* list, size_t id);
+Lien* getLien(List* list, size_t id);
