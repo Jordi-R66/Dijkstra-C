@@ -68,7 +68,7 @@ void addElement(List* list, void* newElement) {
 		if (list->capacity < 10) {
 			resizeList(list, list->n_elements + 5);
 		} else {
-			resizeList(list, (list->n_elements * 1.5));
+			resizeList(list, (size_t)(list->n_elements * 1.5f));
 		}
 	}
 
