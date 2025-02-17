@@ -34,3 +34,10 @@ Sommet* getSommet(List* list, size_t id) {
 Lien* getLien(List* list, size_t id) {
 	return (Lien*)getElement(list, id);
 }
+
+void removeSommet(List* list, size_t index, bool shiftElements) {
+	Sommet* s = getSommet(list, index);
+	free(s->name);
+
+	removeElement(list, index, shiftElements);
+}

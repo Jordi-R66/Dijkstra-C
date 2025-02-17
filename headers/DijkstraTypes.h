@@ -52,3 +52,5 @@ void freeLienList(List* list);
 
 Sommet* getSommet(List* list, size_t id);
 Lien* getLien(List* list, size_t id);
+
+void removeSommet(List* list, size_t index, bool shiftElements);
