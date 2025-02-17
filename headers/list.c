@@ -154,7 +154,6 @@ void copyList(List* listDest, List* listSrc) {
 		listDest->elements = ptr;
 	} else {
 
-		printf("Here 4");
 		free(ptr);
 		exit(EXIT_FAILURE);
 	}
