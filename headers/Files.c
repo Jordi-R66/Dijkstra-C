@@ -88,5 +88,61 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 }
 
 void LoadLinkFromTSV(string filename, List* Links) {
+	char* endptr;
 
+	size_t n_entries = CountLinesInFile(filename);
+
+	if (n_entries == 0) {
+		return;
+	}
+
+	FILE* fp = fopen(filename, READONLY_MODE);
+
+	initializeLienList(Links, n_entries);
+
+	uint8_t colNumber = 0;
+	s_id_t currentEntry = 0;
+
+	Lien work = {0, 0, 0};
+
+	s_id_t idA, idB;
+	TypeLien typeLien;
+
+	string current_idA = (string)calloc(25, sizeof(char));
+	string current_idB = (string)calloc(25, sizeof(char));
+	string current_TypeLien = (string)calloc(2, sizeof(char));
+
+	char c;
+
+	bool fileClosed = false;
+
+	while (c != EOF) {
+		c = getc(fp);
+
+		if (c == EOF) {
+			fclose(fp);
+
+			free(current_idA);
+			free(current_idB);
+			free(current_TypeLien);
+
+			fileClosed = true;
+
+			break;
+		}
+
+		if (c == sep) {
+			colNumber++;
+			colNumber %= 3;
+		} else if (c == '\n') {
+			colNumber = 0;
+			idA = strtoull(current_idA, &endptr, 10);
+			idB = strtoull(current_idB, &endptr, 10);
+			typeLien = strtol(current_TypeLien, &endptr, 10);
+		}
+	}
+
+	if (!fileClosed) {
+		fclose(fp);
+	}
 }
