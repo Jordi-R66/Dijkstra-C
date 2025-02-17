@@ -1,6 +1,7 @@
 #pragma once
 
 #include "commons.h"
+#include "list.h"
 
 enum TypeLien {
 	LIEN_UNI = 1,
@@ -40,3 +41,8 @@ typedef struct Graph Graph;
 // ---------------------------------------
 
 bool sommetcmp(Sommet* sA, Sommet* sB);
+
+// List functions
+
+void initializeSommetList(List* list, size_t nElements);
+void initializeLienList(List* list, size_t nElements);
