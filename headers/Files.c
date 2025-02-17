@@ -1,8 +1,6 @@
 #include "Files.h"
 #include "DijkstraTypes.h"
 
-#include "string.h"
-
 const char* READONLY_MODE = "r";
 const char sep = '\t';
 
