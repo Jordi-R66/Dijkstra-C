@@ -33,7 +33,7 @@ void initializeLienList(List* list, size_t nElements) {
 
 void freeSommetList(List* list) {
 	for (size_t i = 0; i < list->n_elements; i++) {
-		Sommet* s = getSommet(list, i);
+		Sommet* s = getSommetPtr(list, i);
 		free(s->name);
 	}
 
@@ -44,17 +44,17 @@ void freeLienList(List* list) {
 	freeList(list);
 }
 
-Sommet* getSommet(List* list, size_t id) {
+Sommet* getSommetPtr(List* list, size_t id) {
 	void* element_ptr = getElement(list, id);
 	return (Sommet*)element_ptr;
 }
 
-Lien* getLien(List* list, size_t id) {
+Lien* getLienPtr(List* list, size_t id) {
 	return (Lien*)getElement(list, id);
 }
 
 void removeSommet(List* list, size_t index, bool shiftElements) {
-	Sommet* s = getSommet(list, index);
+	Sommet* s = getSommetPtr(list, index);
 	free(s->name);
 
 	removeElement(list, index, shiftElements);
