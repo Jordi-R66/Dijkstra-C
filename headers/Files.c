@@ -47,8 +47,6 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	uint8_t colNumber = 0;
 	s_id_t currentEntry = 0;
 
-	Sommet work = {0, "", 0, 0, 0, (s_id_t*)NULL};
-
 	s_id_t id;
 	double x, y, z;
 
