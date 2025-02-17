@@ -3,6 +3,8 @@
 #include "commons.h"
 #include "list.h"
 
+#define SOMMET_NAME_LENGTH 31 // TOTAL ARRAY LENGTH (INCLUDING `'/0'`)
+
 enum TypeLien {
 	LIEN_UNI = 1,
 	LIEN_BI = 2,
@@ -16,8 +18,6 @@ struct Sommet {
 	string name;
 
 	double x, y, z;
-
-	s_id_t* neighbours_id;
 };
 
 typedef struct Sommet Sommet;
@@ -41,6 +41,10 @@ typedef struct Graph Graph;
 // ---------------------------------------
 
 bool sommetcmp(Sommet* sA, Sommet* sB);
+
+// Sommets
+
+Sommet makeSommet(s_id_t id, string name, double x, double y, double z);
 
 // List functions
 

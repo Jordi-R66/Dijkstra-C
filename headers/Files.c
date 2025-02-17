@@ -39,9 +39,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	// Filling the list
 
 	for (size_t i = 0; i < n_entries; i++) {
-		Sommet newSommet;
-
-		newSommet.name = (string)calloc(30, sizeof(char));
+		Sommet newSommet = makeSommet(0, "", .0, .0, .0);
 
 		addElement(Vertices, (void*)&newSommet);
 	}
@@ -55,7 +53,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	double x, y, z;
 
 	string current_id = (string)calloc(25, sizeof(char));
-	string current_name = (string)calloc(30, sizeof(char));
+	string current_name = (string)calloc(SOMMET_NAME_LENGTH, sizeof(char));
 
 	string current_x = (string)calloc(40, sizeof(char));
 	string current_y = (string)calloc(40, sizeof(char));
