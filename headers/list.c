@@ -65,7 +65,11 @@ void resizeList(List* list, size_t newSize) {
 
 void addElement(List* list, void* newElement) {
 	if ((list->n_elements + 1) >= list->capacity) {
-		resizeList(list, list->n_elements + 2);
+		if (list->capacity < 10) {
+			resizeList(list, list->n_elements + 5);
+		} else {
+			resizeList(list, (list->n_elements * 1.5));
+		}
 	}
 
 	size_t nBytes = list->n_elements * list->elementSize;
