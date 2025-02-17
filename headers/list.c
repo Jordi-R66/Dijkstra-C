@@ -3,7 +3,6 @@
 #include <string.h>
 
 void initializeList(List* list, size_t initSize, size_t elementSize) {
-	printf("List initialised ? %c\n", list->initialized ? 'Y' : 'N');
 	if (list->initialized) {
 		freeList(list);
 	}
@@ -20,7 +19,6 @@ void initializeList(List* list, size_t initSize, size_t elementSize) {
 	if (ptr != NULL) {
 		list->elements = ptr;
 	} else {
-		printf("Here 1");
 		free(ptr);
 		exit(EXIT_FAILURE);
 	}
