@@ -52,11 +52,21 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	char c;
 
+	bool fileClosed = false;
+
 	while (c != EOF) {
 		c = getc(fp);
 
 		if (c == EOF) {
 			fclose(fp);
+
+			free(current_id);
+			free(current_x);
+			free(current_y);
+			free(current_z);
+
+			fileClosed = true;
+
 			break;
 		}
 
@@ -72,7 +82,9 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 		}
 	}
 
-	fclose(fp);
+	if (!fileClosed) {
+		fclose(fp);
+	}
 }
 
 void LoadLinkFromTSV(string filename, List* Links) {
