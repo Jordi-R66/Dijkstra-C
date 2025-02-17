@@ -34,7 +34,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	FILE* fp = fopen(filename, READONLY_MODE);
 
-	initializeList(Vertices, n_entries, sizeof(Sommet));
+	initializeSommetList(Vertices, n_entries);
 
 	uint8_t colNumber = 0;
 	s_id_t currentEntry = 0;
