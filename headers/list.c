@@ -19,6 +19,12 @@ void initializeList(List* list, size_t initSize, size_t elementSize) {
 	if (ptr != NULL) {
 		list->elements = ptr;
 	} else {
+		fprintf(stderr, "Couldn't properly initialize the list, `calloc()` can't find enough space!\n");
+
+		list->initialized = false;
+		list->capacity = 0;
+		list->elementSize = 0;
+
 		free(ptr);
 		exit(EXIT_FAILURE);
 	}
