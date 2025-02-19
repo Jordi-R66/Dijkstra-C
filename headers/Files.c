@@ -26,11 +26,11 @@ size_t CountLinesInFile(string filename) {
 void LoadVerticesFromTSV(string filename, List* Vertices) {
 	char* endptr;
 
-	void* ptrsToFree[10];
+	//void* ptrsToFree[10];
 
-	for (size_t i = 0; i < 10; i++) {
-		ptrsToFree[i] = NULL;
-	}
+	//for (size_t i = 0; i < 10; i++) {
+		//ptrsToFree[i] = NULL;
+	//}
 
 	size_t n_entries = CountLinesInFile(filename);
 
@@ -57,11 +57,20 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	double x, y, z;
 
 	string current_id = (string)calloc(25, sizeof(char));
+	//ptrsToFree[0] = current_id;
+
 	string current_name = (string)calloc(SOMMET_NAME_LENGTH, sizeof(char));
+	//ptrsToFree[1] = current_id;
+
 
 	string current_x = (string)calloc(40, sizeof(char));
+	//ptrsToFree[2] = current_id;
+
 	string current_y = (string)calloc(40, sizeof(char));
+	//ptrsToFree[3] = current_id;
+
 	string current_z = (string)calloc(40, sizeof(char));
+	//ptrsToFree[4] = current_id;
 
 	char c;
 
@@ -72,6 +81,8 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 		if (c == EOF) {
 			fclose(fp);
+
+			printf("freeing all [1]\n");
 
 			free(current_id);
 			free(current_name);
@@ -130,11 +141,15 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			s->x = x;
 			s->y = y;
 			s->z = z;
+
+			currentEntry++;
 		}
 	}
 
 	if (!fileClosed) {
 		fclose(fp);
+
+		//freeAll(ptrsToFree, 10);
 
 		free(current_id);
 		free(current_name);
