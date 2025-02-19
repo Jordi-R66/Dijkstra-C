@@ -36,14 +36,6 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	initializeSommetList(Vertices, n_entries);
 
-	// Filling the list
-
-	for (size_t i = 0; i < n_entries; i++) {
-		Sommet newSommet = makeSommet(0, "", .0, .0, .0);
-
-		addElement(Vertices, (void*)&newSommet);
-	}
-
 	uint8_t colNumber = 0;
 	s_id_t currentEntry = 0;
 
@@ -61,13 +53,14 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	bool fileClosed = false;
 
+	printf("Reading file\n");
+
 	while (c != EOF) {
 		c = getc(fp);
 
 		if (c == EOF) {
+			printf("Reached end of file\nClosing file\n");
 			fclose(fp);
-
-			printf("freeing all [1]\n");
 
 			free(current_id);
 			free(current_name);
@@ -118,14 +111,8 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			z = strtod(current_z, &endptr);
 
 			// Mise à jour de l'élément dans la liste
-			Sommet* s = getSommetPtr(Vertices, currentEntry);
-			s->id = id;
-
-			strcpy(s->name, current_name);
-
-			s->x = x;
-			s->y = y;
-			s->z = z;
+			Sommet s = makeSommet(id, current_name, x, y, z);
+			addElement(Vertices, (void*)&s);
 
 			currentEntry++;
 		}
@@ -140,6 +127,8 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 		free(current_y);
 		free(current_z);
 	}
+
+	shrinkToFit(Vertices);
 }
 
 void LoadLinkFromTSV(string filename, List* Links) {
