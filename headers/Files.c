@@ -51,14 +51,10 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	double x, y, z;
 
 	string current_id = (string)calloc(25, sizeof(char));
-
 	string current_name = (string)calloc(SOMMET_NAME_LENGTH, sizeof(char));
 
-
 	string current_x = (string)calloc(40, sizeof(char));
-
 	string current_y = (string)calloc(40, sizeof(char));
-
 	string current_z = (string)calloc(40, sizeof(char));
 
 	char c;
