@@ -37,7 +37,7 @@ void initializeLienList(List* list, size_t nElements) {
 void freeSommetList(List* list) {
 	printf("Entree du for\n");
 	for (size_t i = 0; i < list->n_elements; i++) {
-		printf("\tAvant de get\n");
+		printf("\tAvant de get %llu\n", i);
 		Sommet* s = getSommetPtr(list, i);
 		printf("\tAvant de free (%llX)\n", (uint64_t)s);
 		free(s->name);
