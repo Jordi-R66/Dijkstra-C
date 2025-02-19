@@ -26,6 +26,12 @@ size_t CountLinesInFile(string filename) {
 void LoadVerticesFromTSV(string filename, List* Vertices) {
 	char* endptr;
 
+	void* ptrsToFree[10];
+
+	for (size_t i = 0; i < 10; i++) {
+		ptrsToFree[i] = NULL;
+	}
+
 	size_t n_entries = CountLinesInFile(filename);
 
 	if (n_entries == 0) {
@@ -80,7 +86,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 		/*
 		if (c != sep) {
-			switch (currentEntry) {
+			switch (colNumber) {
 				case 0:
 					current_id[iCol] = c;
 					break;
@@ -114,6 +120,16 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			x = strtod(current_x, &endptr);
 			y = strtod(current_y, &endptr);
 			z = strtod(current_z, &endptr);
+
+			// Mise à jour de l'élément dans la liste
+			Sommet* s = getSommetPtr(Vertices, currentEntry);
+			s->id = id;
+
+			strcpy(s->name, current_name);
+
+			s->x = x;
+			s->y = y;
+			s->z = z;
 		}
 	}
 
