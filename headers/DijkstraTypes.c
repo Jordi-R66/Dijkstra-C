@@ -11,12 +11,15 @@ Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
 	output.name = (string)calloc(SOMMET_NAME_LENGTH, sizeof(char));
 
 	if (output.name == (string)NULL) {
-
+		exit(EXIT_FAILURE);
 	}
 
 	output.id = id;
 	strcpy(output.name, name);
 
+	output.x = x;
+	output.y = y;
+	output.z = z;
 
 	return output;
 }
@@ -32,10 +35,16 @@ void initializeLienList(List* list, size_t nElements) {
 }
 
 void freeSommetList(List* list) {
+	printf("Entree du for\n");
 	for (size_t i = 0; i < list->n_elements; i++) {
+		printf("\tAvant de get\n");
 		Sommet* s = getSommetPtr(list, i);
+		printf("\tAvant de free (%llX)\n", (uint64_t)s);
 		free(s->name);
+		printf("\tApres avoir free\n\n");
 	}
+
+	printf("Sortie du for\n");
 
 	freeList(list);
 }
