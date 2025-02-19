@@ -34,14 +34,29 @@ void initializeLienList(List* list, size_t nElements) {
 	initializeList(list, nElements, sizeof(Lien));
 }
 
+void addSommet(List* list, Sommet* sommet) {
+	if ((list->n_elements + 1) >= list->capacity) {
+		if (list->capacity <= 10) {
+			resizeList(list, list->n_elements + 5);
+		} else {
+			resizeList(list, (size_t)(list->n_elements * 1.5f));
+		}
+	}
+
+	size_t nBytes = list->n_elements * list->elementSize;
+	memcpy((int8_t*)(list->elements + nBytes), sommet, list->elementSize);
+
+	list->n_elements++;
+}
+
 void freeSommetList(List* list) {
 	printf("Entree du for\n");
 	for (size_t i = 0; i < list->n_elements; i++) {
-		printf("\tAvant de get %llu\n", i);
+		//printf("\tAvant de get %llu\n", i);
 		Sommet* s = getSommetPtr(list, i);
-		printf("\tAvant de free (%llX)\n", (uint64_t)s);
+		//printf("\tAvant de free (%llX)\n", (uint64_t)s);
 		free(s->name);
-		printf("\tApres avoir free\n\n");
+		//printf("\tApres avoir free\n\n");
 	}
 
 	printf("Sortie du for\n");
