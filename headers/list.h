@@ -17,7 +17,7 @@ typedef struct List List;
 void initializeList(List* list, size_t initSize, size_t elementSize);
 void freeList(List* list);
 
-void resizeList(List* list, size_t newSize);
+void resizeList(List* list, size_t newCapacity);
 
 void addElement(List* list, void* newElement);
 void removeElement(List* list, size_t index, bool shiftElements);
