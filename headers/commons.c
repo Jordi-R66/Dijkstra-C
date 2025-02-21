@@ -9,3 +9,15 @@ void freeAll(void** __ptrs, size_t __n_ptrs) {
 		}
 	}
 }
+
+bool validChar(char c) {
+	char* validChars = " -+.0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_{}[]()'\"";
+
+	for (int i = 0; i < strlen(validChars); i++) {
+		if (validChars[i] == c) {
+			return true;
+		}
+	}
+
+	return false;
+}
