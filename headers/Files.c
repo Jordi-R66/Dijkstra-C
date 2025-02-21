@@ -112,7 +112,8 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 			// Mise à jour de l'élément dans la liste
 			Sommet s = makeSommet(id, current_name, x, y, z);
-			addElement(Vertices, (void*)&s);
+
+			addSommet(Vertices, &s);
 
 			currentEntry++;
 		}
