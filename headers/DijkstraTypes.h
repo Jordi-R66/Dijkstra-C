@@ -51,6 +51,7 @@ Sommet makeSommet(s_id_t id, string name, double x, double y, double z);
 void initializeSommetList(List* list, size_t nElements);
 void initializeLienList(List* list, size_t nElements);
 
+void addSommet(List* list, Sommet* sommet);
 void freeSommet(Sommet* sommet);
 
 void freeSommetList(List* list);
