@@ -15,7 +15,7 @@ typedef enum TypeLien TypeLien;
 
 struct Sommet {
 	s_id_t id;
-	string name;
+	string* name_ptr;
 
 	double x, y, z;
 };
@@ -50,6 +50,8 @@ Sommet makeSommet(s_id_t id, string name, double x, double y, double z);
 
 void initializeSommetList(List* list, size_t nElements);
 void initializeLienList(List* list, size_t nElements);
+
+void freeSommet(Sommet* sommet);
 
 void freeSommetList(List* list);
 void freeLienList(List* list);

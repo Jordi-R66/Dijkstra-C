@@ -8,14 +8,14 @@ Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
 	size_t lenStr = strlen(name);
 
 	Sommet output;
-	output.name = (string)calloc(SOMMET_NAME_LENGTH, sizeof(char));
+	output.name_ptr = (string*)calloc(1, sizeof(string));
 
-	if (output.name == (string)NULL) {
+	if (output.name_ptr == (string*)NULL) {
 		exit(EXIT_FAILURE);
 	}
 
 	output.id = id;
-	strcpy(output.name, name);
+	strcpy(*(output.name_ptr), name);
 
 	output.x = x;
 	output.y = y;
@@ -44,19 +44,35 @@ void addSommet(List* list, Sommet* sommet) {
 	}
 
 	size_t nBytes = list->n_elements * list->elementSize;
-	memcpy((int8_t*)(list->elements + nBytes), sommet, list->elementSize);
+	Sommet* dest = (Sommet*)((size_t*)list->elements + nBytes);
+	memcpy(dest, sommet, list->elementSize);
 
 	list->n_elements++;
 }
 
+void freeSommet(Sommet* sommet) {
+	if (sommet->name_ptr != (string*)NULL) {
+		if (*(sommet->name_ptr) != (string)NULL) {
+			free(*(sommet->name_ptr));
+		}
+
+		free(sommet->name_ptr);
+	}
+}
+
 void freeSommetList(List* list) {
 	printf("Entree du for\n");
+
 	for (size_t i = 0; i < list->n_elements; i++) {
-		//printf("\tAvant de get %llu\n", i);
+
+		printf("\tAvant de get %llu\n", i);
 		Sommet* s = getSommetPtr(list, i);
-		//printf("\tAvant de free (%llX)\n", (uint64_t)s);
-		free(s->name);
-		//printf("\tApres avoir free\n\n");
+
+		printf("\tAvant de free (%llX)\n", (uint64_t)s);
+
+		freeSommet(s);
+
+		printf("\tApres avoir free\n\n");
 	}
 
 	printf("Sortie du for\n");
@@ -79,7 +95,7 @@ Lien* getLienPtr(List* list, size_t id) {
 
 void removeSommet(List* list, size_t index, bool shiftElements) {
 	Sommet* s = getSommetPtr(list, index);
-	free(s->name);
+	free(s->name_ptr);
 
 	removeElement(list, index, shiftElements);
 }
