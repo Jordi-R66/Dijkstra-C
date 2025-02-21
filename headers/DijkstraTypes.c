@@ -42,11 +42,7 @@ void initializeLienList(List* list, size_t nElements) {
 
 void addSommet(List* list, Sommet* sommet) {
 	if ((list->n_elements + 1) >= list->capacity) {
-		if (list->capacity <= 10) {
-			resizeList(list, list->n_elements + 5);
-		} else {
-			resizeList(list, (size_t)(list->n_elements * 1.5f));
-		}
+		resizeList(list, list->n_elements + 50);
 	}
 
 	size_t nBytes = list->n_elements * list->elementSize;
