@@ -5,8 +5,6 @@ bool sommetcmp(Sommet* sA, Sommet* sB) {
 }
 
 Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
-	size_t lenStr = strlen(name);
-
 	Sommet output;
 	output.name_ptr = (string*)calloc(1, sizeof(string));
 
@@ -17,13 +15,13 @@ Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
 
 	*output.name_ptr = (string)calloc(SOMMET_NAME_LENGTH, sizeof(char));
 
-	if (output.name_ptr == (string*)NULL) {
+	if (*output.name_ptr == (string)NULL) {
 		fprintf(stderr, "Couldn't allocate space for the string\n");
 		exit(EXIT_FAILURE);
 	}
 
 	output.id = id;
-	strcpy(*(output.name_ptr), name);
+	strcpy(*output.name_ptr, name);
 
 	output.x = x;
 	output.y = y;
