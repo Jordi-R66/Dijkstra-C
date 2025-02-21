@@ -7,7 +7,7 @@
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c23",
+            "cStandard": "c17",
             "compilerArgs": [
                 "-m64"
             ]
@@ -19,7 +19,7 @@
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c23",
+            "cStandard": "c17",
             "compilerArgs": [
                 "-m32"
             ]
