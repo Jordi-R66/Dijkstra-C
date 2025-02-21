@@ -11,6 +11,14 @@ Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
 	output.name_ptr = (string*)calloc(1, sizeof(string));
 
 	if (output.name_ptr == (string*)NULL) {
+		fprintf(stderr, "Couldn't allocate space for the string's pointer\n");
+		exit(EXIT_FAILURE);
+	}
+
+	*output.name_ptr = (string)calloc(SOMMET_NAME_LENGTH, sizeof(char));
+
+	if (output.name_ptr == (string*)NULL) {
+		fprintf(stderr, "Couldn't allocate space for the string\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -61,21 +69,12 @@ void freeSommet(Sommet* sommet) {
 }
 
 void freeSommetList(List* list) {
-	printf("Entree du for\n");
-
 	for (size_t i = 0; i < list->n_elements; i++) {
 
-		printf("\tAvant de get %llu\n", i);
 		Sommet* s = getSommetPtr(list, i);
 
-		printf("\tAvant de free (%llX)\n", (uint64_t)s);
-
 		freeSommet(s);
-
-		printf("\tApres avoir free\n\n");
 	}
-
-	printf("Sortie du for\n");
 
 	freeList(list);
 }
