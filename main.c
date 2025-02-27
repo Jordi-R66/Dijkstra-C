@@ -4,7 +4,7 @@
 #include "headers/Files.h"
 
 int main(void) {
-	string filename = "France_s.tsv";
+	string filename = "France_s.csv";
 
 	List Vertices;
 	Vertices.initialized = false;

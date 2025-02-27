@@ -2,7 +2,7 @@
 #include "DijkstraTypes.h"
 
 #define NB_COLS 5
-#define SEP '\t'
+#define COL_SEP ','
 
 const char* READONLY_MODE = "r";
 
@@ -74,7 +74,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			break;
 		}
 
-		if (c == SEP) {
+		if (c == COL_SEP) {
 			//printf(", ");
 			nBornes++;
 			colNumber = 0;
@@ -198,7 +198,7 @@ void LoadLinkFromTSV(string filename, List* Links) {
 			break;
 		}
 
-		if (c == SEP) {
+		if (c == COL_SEP) {
 			colNumber++;
 			colNumber %= 3;
 		}
