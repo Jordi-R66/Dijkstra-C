@@ -8,6 +8,8 @@
             "args": [
                 "-O0",
                 "-g",
+                "-masm=intel",
+                "-std=c23",
                 "main.c",
                 "headers/list.c",
                 "headers/Files.c",
