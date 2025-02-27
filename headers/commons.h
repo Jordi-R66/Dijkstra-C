@@ -12,7 +12,7 @@
 #endif
 
 typedef char* string;
-typedef int64_t s_id_t;
+typedef int64_t id_t;
 typedef double coord_t;
 
 void freeAll(void** __ptrs, size_t __n_ptrs);
