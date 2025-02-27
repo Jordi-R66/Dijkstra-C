@@ -8,7 +8,6 @@
             "args": [
                 "-g",
                 "main.c",
-                "tsv_to_csv.c",
                 "headers/list.c",
                 "headers/Files.c",
                 "headers/DijkstraTypes.c",
