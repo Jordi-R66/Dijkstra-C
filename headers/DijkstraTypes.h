@@ -17,7 +17,7 @@ struct Sommet {
 	s_id_t id;
 	string* name_ptr;
 
-	double x, y, z;
+	coord_t x, y, z;
 };
 
 typedef struct Sommet Sommet;
@@ -44,7 +44,7 @@ bool sommetcmp(Sommet* sA, Sommet* sB);
 
 // Sommets
 
-Sommet makeSommet(s_id_t id, string name, double x, double y, double z);
+Sommet makeSommet(s_id_t id, string name, coord_t x, coord_t y, coord_t z);
 void printSommet(Sommet sommet);
 
 // List functions

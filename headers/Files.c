@@ -46,7 +46,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	s_id_t currentEntry = 0;
 
 	s_id_t id;
-	double x, y, z;
+	coord_t x, y, z;
 
 	char current_id[25];
 	char current_name[SOMMET_NAME_LENGTH];

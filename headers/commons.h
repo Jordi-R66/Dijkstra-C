@@ -13,6 +13,7 @@
 
 typedef char* string;
 typedef int64_t s_id_t;
+typedef double coord_t;
 
 void freeAll(void** __ptrs, size_t __n_ptrs);
 bool validChar(char c);
