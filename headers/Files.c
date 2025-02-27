@@ -43,9 +43,9 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	initializeSommetList(Vertices, n_entries);
 
 	uint8_t colNumber = 0;
-	s_id_t currentEntry = 0;
+	id_t currentEntry = 0;
 
-	s_id_t id;
+	id_t id;
 	coord_t x, y, z;
 
 	char current_id[25];
@@ -54,6 +54,12 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	char current_x[40];
 	char current_y[40];
 	char current_z[40];
+
+	memset(current_id, 0, 25);
+	memset(current_name, 0, SOMMET_NAME_LENGTH);
+	memset(current_x, 0, 40);
+	memset(current_y, 0, 40);
+	memset(current_z, 0, 40);
 
 	bool fileClosed = false;
 
@@ -69,11 +75,11 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 		}
 
 		if (c == SEP) {
-			printf(", ");
+			//printf(", ");
 			nBornes++;
 			colNumber = 0;
 		} else if (c == '\n') {
-			printf("%c", c);
+			//printf("%c", c);
 			id = strtol(current_id, &endptr, 10);
 
 			x = strtod(current_x, &endptr);
@@ -81,6 +87,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			z = strtod(current_z, &endptr);
 
 			Sommet s = makeSommet(id, current_name, x, y, z);
+			printSommet(s);
 
 			addSommet(Vertices, &s);
 
@@ -93,7 +100,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			nBornes = 0;
 			colNumber = 0;
 		} else {
-			printf("%c", c);
+			//printf("%c", c);
 			switch (nBornes) {
 				case 0:
 					current_id[colNumber] = c;
@@ -121,9 +128,11 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 		}
 	}
 
-	fclose(fp);
+	printf("Sortie de la while\n");
 
-	shrinkToFit(Vertices);
+	//fclose(fp);
+
+	//shrinkToFit(Vertices);
 
 	size_t capacity, capacity_bytes, size, size_bytes, diff, diff_bytes;
 
@@ -153,11 +162,11 @@ void LoadLinkFromTSV(string filename, List* Links) {
 	initializeLienList(Links, n_entries);
 
 	uint8_t colNumber = 0;
-	s_id_t currentEntry = 0;
+	id_t currentEntry = 0;
 
 	Lien work = { 0, 0, 0 };
 
-	s_id_t idA, idB;
+	id_t idA, idB;
 	TypeLien typeLien;
 
 	string current_idA = (string)calloc(25, sizeof(char));
