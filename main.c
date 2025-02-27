@@ -9,10 +9,10 @@ int main(void) {
 	List Vertices;
 	Vertices.initialized = false;
 
-	printf("Loading vertices in %LX\n", (uint64_t)&Vertices);
+	printf("Loading vertices in %lX\n", (uint64_t)&Vertices);
 	LoadVerticesFromTSV(filename, &Vertices);
 
-	printf("Vertices loaded in %LX\n", (uint64_t)&Vertices);
+	printf("Vertices loaded in %lX\n", (uint64_t)&Vertices);
 	freeSommetList(&Vertices);
 
 	return EXIT_SUCCESS;
