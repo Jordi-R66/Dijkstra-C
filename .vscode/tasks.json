@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "main.c",
+                "tsv_to_csv.c",
+                "headers/list.c",
+                "headers/Files.c",
+                "headers/DijkstraTypes.c",
+                "headers/commons.c",
+                "-o",
+                "Dijkstra-C"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
