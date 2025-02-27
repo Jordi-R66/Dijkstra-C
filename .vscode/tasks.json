@@ -6,6 +6,7 @@
             "type": "shell",
             "command": "gcc",
             "args": [
+                "-O0",
                 "-g",
                 "main.c",
                 "headers/list.c",
@@ -13,7 +14,7 @@
                 "headers/DijkstraTypes.c",
                 "headers/commons.c",
                 "-o",
-                "Dijkstra-C"
+                "releases/Dijkstra.elf"
             ],
             "group": {
                 "kind": "build",
