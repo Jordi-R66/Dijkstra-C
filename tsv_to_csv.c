@@ -14,13 +14,15 @@ int main(int argc, char** argv) {
 
 	char c = 0;
 
-	do {
+	while (c != EOF) {
 		c = fgetc(fp_in);
 
-		c = c == '\t' ? ',' : c;
+		if (c != EOF) {
+			c = c == '\t' ? ',' : c;
 
-		fwrite(&c, 1, 1, fp_out);
-	} while (c != EOF);
+			fwrite(&c, 1, 1, fp_out);
+		}
+	}
 
 	fclose(fp_in);
 	fclose(fp_out);
