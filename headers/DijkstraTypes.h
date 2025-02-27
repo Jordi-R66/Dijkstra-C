@@ -15,7 +15,7 @@ typedef enum TypeLien TypeLien;
 
 struct Sommet {
 	id_t id;
-	string* name_ptr;
+	string name_ptr;
 
 	coord_t x, y, z;
 };
