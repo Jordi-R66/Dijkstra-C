@@ -30,6 +30,10 @@ Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
 	return output;
 }
 
+void printSommet(Sommet sommet) {
+	printf("Sommet %llu\nName : %s\nx : %lf\ny : %lf\nz : %lf\n---------------------------------------------", sommet.id, *(sommet.name_ptr), sommet.x, sommet.y, sommet.z);
+}
+
 // List functions
 
 void initializeSommetList(List* list, size_t nElements) {
