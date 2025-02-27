@@ -19,9 +19,8 @@ string copyAndCreateStr(string source) {
 
 Sommet makeSommet(id_t id, string name, double x, double y, double z) {
 	Sommet output;
-	output.name_ptr = (string*)calloc(1, sizeof(string));
 
-	if (output.name_ptr == (string*)NULL) {
+	if (output.name_ptr == (string)NULL) {
 		fprintf(stderr, "Couldn't allocate space for the string's pointer\n");
 		exit(EXIT_FAILURE);
 	}
@@ -64,7 +63,7 @@ void addSommet(List* list, Sommet* sommet) {
 }
 
 void freeSommet(Sommet* sommet) {
-	if (sommet->name_ptr != (string*)NULL) {
+	if (sommet->name_ptr != (string)NULL) {
 		free(sommet->name_ptr);
 	}
 }
