@@ -53,14 +53,14 @@ void resizeList(List* list, size_t newCapacity) {
 
 	if (newCapacity <= 0) {
 		freeList(list);
-		fprintf(stderr, "Can't resize a list to a null or negative length (%llu elements)\n", newCapacity);
+		fprintf(stderr, "Can't resize a list to a null or negative length (%zu elements)\n", newCapacity);
 		exit(EXIT_FAILURE);
 	}
 
 	void* ptr = (void*)realloc(list->elements, newCapacity * list->elementSize);
 
 	if (ptr != NULL) {
-		printf("new capacity : %llu elements\n", newCapacity);
+		printf("new capacity : %zu elements\n", newCapacity);
 		list->elements = ptr;
 		list->capacity = newCapacity;
 	} else {

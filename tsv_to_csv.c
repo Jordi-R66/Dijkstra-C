@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
 	char c = 0;
 
 	do {
-		c = getc(fp_in);
+		c = fgetc(fp_in);
 
 		c = c == '\t' ? ',' : c;
 

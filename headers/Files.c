@@ -32,7 +32,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	size_t n_entries = CountLinesInFile(filename);
 
-	printf("%llu Sommets\n", n_entries);
+	printf("%zu Sommets\n", n_entries);
 
 	if (n_entries == 0) {
 		return;
@@ -145,7 +145,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	diff = capacity - size;
 	diff_bytes = capacity_bytes - size_bytes;
 
-	printf("Been through %llu entries\n\nVertices capacity : %llu (%llu bytes)\nVertices size : %llu (%llu bytes)\nDifference : %llu (%llu bytes)\n", currentEntry, capacity, capacity_bytes, size, size_bytes, diff, diff_bytes);
+	printf("Been through %ld entries\n\nVertices capacity : %zu (%zu bytes)\nVertices size : %zu (%zu bytes)\nDifference : %zu (%zu bytes)\n", currentEntry, capacity, capacity_bytes, size, size_bytes, diff, diff_bytes);
 }
 
 void LoadLinkFromTSV(string filename, List* Links) {
