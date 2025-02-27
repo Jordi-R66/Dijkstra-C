@@ -3,7 +3,7 @@
 #include "headers/list.h"
 #include "headers/Files.h"
 
-void main(void) {
+int main(void) {
 	string filename = "France_s.tsv";
 
 	List Vertices;
@@ -15,5 +15,5 @@ void main(void) {
 	printf("Vertices loaded in %LX\n", (uint64_t)&Vertices);
 	freeSommetList(&Vertices);
 
-	return;
+	return EXIT_SUCCESS;
 }
