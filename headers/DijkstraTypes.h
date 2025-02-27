@@ -15,7 +15,7 @@ typedef enum TypeLien TypeLien;
 
 struct Sommet {
 	s_id_t id;
-	string name_ptr;
+	char name[SOMMET_NAME_LENGTH];
 
 	coord_t x, y, z;
 	bool freed : 1;

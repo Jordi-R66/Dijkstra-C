@@ -4,28 +4,10 @@ bool sommetcmp(Sommet* sA, Sommet* sB) {
 	return (sA->id) == (sB->id);
 }
 
-string copyAndCreateStr(string source) {
-	string newStr = (string)calloc(SOMMET_NAME_LENGTH, sizeof(char));
-
-	if (newStr != NULL) {
-		strcpy(newStr, source);
-	} else {
-		fprintf(stderr, "Couldn't allocate space for the string\n");
-		exit(EXIT_FAILURE);
-	}
-
-	return newStr;
-}
-
 Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
 	Sommet output;
 
-	if (output.name_ptr == (string)NULL) {
-		fprintf(stderr, "Couldn't allocate space for the string's pointer\n");
-		exit(EXIT_FAILURE);
-	}
-
-	output.name_ptr = copyAndCreateStr(name);
+	strcpy(output.name, name);
 
 	output.id = id;
 
@@ -33,13 +15,11 @@ Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
 	output.y = y;
 	output.z = z;
 
-	output.freed = false;
-
 	return output;
 }
 
 void printSommet(Sommet sommet) {
-	printf("Sommet %llu\nName : %s\nx : %lf\ny : %lf\nz : %lf\n---------------------------------------------\n", sommet.id, sommet.name_ptr, sommet.x, sommet.y, sommet.z);
+	printf("Sommet %llu\nName : %s\nx : %lf\ny : %lf\nz : %lf\n---------------------------------------------\n", sommet.id, sommet.name, sommet.x, sommet.y, sommet.z);
 }
 
 // List functions
@@ -64,15 +44,6 @@ void addSommet(List* list, Sommet* sommet) {
 	list->n_elements++;
 }
 
-void freeSommet(Sommet* sommet) {
-	printSommet(*sommet);
-
-	if ((sommet->name_ptr != (string)NULL) && (sommet->freed == false)) {
-		free(sommet->name_ptr);
-		sommet->freed = true;
-	}
-}
-
 void freeSommetList(List* list) {
 	for (size_t i = 0; i < list->n_elements; i++) {
 		removeSommet(list, i, false);
@@ -95,7 +66,5 @@ Lien* getLienPtr(List* list, size_t id) {
 }
 
 void removeSommet(List* list, size_t index, bool shiftElements) {
-	freeSommet(getSommetPtr(list, index));
-
 	removeElement(list, index, shiftElements);
 }
