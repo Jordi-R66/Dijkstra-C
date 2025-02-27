@@ -43,9 +43,9 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	initializeSommetList(Vertices, n_entries);
 
 	uint8_t colNumber = 0;
-	id_t currentEntry = 0;
+	s_id_t currentEntry = 0;
 
-	id_t id;
+	s_id_t id;
 	coord_t x, y, z;
 
 	char current_id[25];
@@ -162,11 +162,11 @@ void LoadLinkFromTSV(string filename, List* Links) {
 	initializeLienList(Links, n_entries);
 
 	uint8_t colNumber = 0;
-	id_t currentEntry = 0;
+	s_id_t currentEntry = 0;
 
 	Lien work = { 0, 0, 0 };
 
-	id_t idA, idB;
+	s_id_t idA, idB;
 	TypeLien typeLien;
 
 	string current_idA = (string)calloc(25, sizeof(char));

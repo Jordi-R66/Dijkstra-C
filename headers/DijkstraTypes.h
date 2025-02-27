@@ -14,7 +14,7 @@ enum TypeLien {
 typedef enum TypeLien TypeLien;
 
 struct Sommet {
-	id_t id;
+	s_id_t id;
 	string name_ptr;
 
 	coord_t x, y, z;
@@ -24,8 +24,8 @@ struct Sommet {
 typedef struct Sommet Sommet;
 
 struct Lien {
-	id_t idA;
-	id_t idB;
+	s_id_t idA;
+	s_id_t idB;
 
 	TypeLien type;
 };
@@ -45,7 +45,7 @@ bool sommetcmp(Sommet* sA, Sommet* sB);
 
 // Sommets
 
-Sommet makeSommet(id_t id, string name, coord_t x, coord_t y, coord_t z);
+Sommet makeSommet(s_id_t id, string name, coord_t x, coord_t y, coord_t z);
 void printSommet(Sommet sommet);
 
 // List functions

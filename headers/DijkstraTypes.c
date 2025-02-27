@@ -17,7 +17,7 @@ string copyAndCreateStr(string source) {
 	return newStr;
 }
 
-Sommet makeSommet(id_t id, string name, double x, double y, double z) {
+Sommet makeSommet(s_id_t id, string name, double x, double y, double z) {
 	Sommet output;
 
 	if (output.name_ptr == (string)NULL) {
