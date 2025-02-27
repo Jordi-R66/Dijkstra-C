@@ -18,6 +18,7 @@ struct Sommet {
 	string name_ptr;
 
 	coord_t x, y, z;
+	bool freed : 1;
 };
 
 typedef struct Sommet Sommet;

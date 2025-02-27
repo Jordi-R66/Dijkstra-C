@@ -33,6 +33,8 @@ Sommet makeSommet(id_t id, string name, double x, double y, double z) {
 	output.y = y;
 	output.z = z;
 
+	output.freed = false;
+
 	return output;
 }
 
@@ -63,8 +65,9 @@ void addSommet(List* list, Sommet* sommet) {
 }
 
 void freeSommet(Sommet* sommet) {
-	if (sommet->name_ptr != (string)NULL) {
+	if ((sommet->name_ptr != (string)NULL) && (sommet->freed == false)) {
 		free(sommet->name_ptr);
+		sommet->freed = true;
 	}
 }
 
