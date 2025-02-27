@@ -99,6 +99,8 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 			nBornes = 0;
 			colNumber = 0;
+
+			currentEntry++;
 		} else {
 			//printf("%c", c);
 			switch (nBornes) {
@@ -123,16 +125,20 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 					break;
 
 				default:
+					//fprintf(stderr, "nBornes invalid value, value must be < %u (is equals to %u)\n", NB_COLS, nBornes);
+					//exit(EXIT_FAILURE);
 					break;
 			}
+
+			colNumber++;
 		}
 	}
 
-	printf("Sortie de la while\n");
+	//printf("Sortie de la while\n");
 
-	//fclose(fp);
+	fclose(fp);
 
-	//shrinkToFit(Vertices);
+	shrinkToFit(Vertices);
 
 	size_t capacity, capacity_bytes, size, size_bytes, diff, diff_bytes;
 
