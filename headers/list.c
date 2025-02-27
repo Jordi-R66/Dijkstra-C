@@ -87,10 +87,6 @@ void removeElement(List* list, size_t index, bool shiftElements) {
 		exit(EXIT_FAILURE);
 	}
 
-	if (shiftElements == NULL) {
-		shiftElements = true;
-	}
-
 	size_t nBytes = index * list->elementSize;
 
 	memset((int8_t*)list->elements + nBytes, 0, list->elementSize);
