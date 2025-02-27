@@ -56,9 +56,8 @@ void freeSommet(Sommet* sommet) {
 	if (sommet->name_ptr != (string*)NULL) {
 		if (*sommet->name_ptr != (string)NULL) {
 			free(*sommet->name_ptr);
+			free(sommet->name_ptr);
 		}
-
-		free(sommet->name_ptr);
 	}
 }
 
