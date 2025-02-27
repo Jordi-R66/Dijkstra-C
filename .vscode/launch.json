@@ -5,7 +5,7 @@
             "name": "Debug Dijkstra-C",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Dijkstra-C",
+            "program": "${workspaceFolder}/releases/Dijkstra.elf",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
