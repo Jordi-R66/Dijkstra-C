@@ -65,6 +65,8 @@ void addSommet(List* list, Sommet* sommet) {
 }
 
 void freeSommet(Sommet* sommet) {
+	printSommet(*sommet);
+
 	if ((sommet->name_ptr != (string)NULL) && (sommet->freed == false)) {
 		free(sommet->name_ptr);
 		sommet->freed = true;
