@@ -60,7 +60,7 @@ void resizeList(List* list, size_t newCapacity) {
 	void* ptr = (void*)realloc(list->elements, newCapacity * list->elementSize);
 
 	if (ptr != NULL) {
-		printf("new capacity : %zu elements\n", newCapacity);
+		//printf("new capacity : %zu elements\n", newCapacity);
 		list->elements = ptr;
 		list->capacity = newCapacity;
 	} else {
