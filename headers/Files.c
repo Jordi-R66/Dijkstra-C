@@ -50,7 +50,6 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	s_id_t currentEntry = 0;
 
 	s_id_t id;
-	coord_t x, y, z;
 
 	char c = 0;
 	uint8_t currentField = 0;
@@ -72,9 +71,9 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 			switch (currentField) {
 				case SOMMET_ID:
-					currentEntry = strtoll(buffer, &endptr, 10);
+					id = strtoll(buffer, &endptr, 10);
 
-					Sommets[currentEntry] = makeSommet(currentEntry, "", 0.0, 0.0, 0.0);
+					Sommets[currentEntry] = makeSommet(id, "", 0.0, 0.0, 0.0);
 					canLoad = false;
 					break;
 
@@ -108,6 +107,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 			if (c == '\n') {
 				currentField = 0;
+				currentEntry++;
 			} else {
 				currentField++;
 			}
