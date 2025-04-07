@@ -63,7 +63,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 			break;
 		}
 
-		if ((c != ',') && (c != '\n')) {
+		if ((c != field_sep) && (c != '\n')) {
 			buffer[fieldLength++] = c;
 		} else {
 
@@ -155,6 +155,7 @@ void LoadLinkFromTSV(string filename, List* Links) {
 	uint8_t currentField = 0;
 	uint8_t fieldLength = 0;
 
+	const char field_sep = ',';
 	bool canLoad = false;
 
 	while (c != EOF) {
@@ -164,7 +165,7 @@ void LoadLinkFromTSV(string filename, List* Links) {
 			break;
 		}
 
-		if ((c != ',') && (c != '\n')) {
+		if ((c != field_sep) && (c != '\n')) {
 			buffer[fieldLength++] = c;
 		} else {
 			switch (currentField) {
