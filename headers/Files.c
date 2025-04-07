@@ -30,6 +30,8 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	char buffer[128];
 
+	memset(buffer, 0, 128);
+
 	size_t n_entries = CountLinesInFile(filename);
 
 	printf("%zu Sommets\n", n_entries);
@@ -42,99 +44,77 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	initializeSommetList(Vertices, n_entries);
 
+	Sommet* Sommets = (Sommet*)Vertices->elements;
+
 	uint8_t colNumber = 0;
 	s_id_t currentEntry = 0;
 
 	s_id_t id;
 	coord_t x, y, z;
 
-	char current_id[25];
-	char current_name[SOMMET_NAME_LENGTH];
+	char c = 0;
+	uint8_t currentField = 0;
+	uint8_t fieldLength = 0;
 
-	char current_x[40];
-	char current_y[40];
-	char current_z[40];
-
-	memset(current_id, 0, 25);
-	memset(current_name, 0, SOMMET_NAME_LENGTH);
-	memset(current_x, 0, 40);
-	memset(current_y, 0, 40);
-	memset(current_z, 0, 40);
-
-	bool fileClosed = false;
-
-	char c = '\0';
-
-	uint8_t nBornes;
+	const char field_sep = ',';
+	bool canLoad = false;
 
 	while (c != EOF) {
-		c = getc(fp);
+		c = fgetc(fp);
 
 		if (c == EOF) {
 			break;
 		}
 
-		if (c == COL_SEP) {
-			//printf(", ");
-			nBornes++;
-			colNumber = 0;
-		} else if (c == '\n') {
-			//printf("%c", c);
-			id = strtol(current_id, &endptr, 10);
-
-			x = strtod(current_x, &endptr);
-			y = strtod(current_y, &endptr);
-			z = strtod(current_z, &endptr);
-
-			Sommet s = makeSommet(id, current_name, x, y, z);
-			printSommet(s);
-
-			addSommet(Vertices, &s);
-
-			memset(current_id, 0, 25);
-			memset(current_name, 0, SOMMET_NAME_LENGTH);
-			memset(current_x, 0, 40);
-			memset(current_y, 0, 40);
-			memset(current_z, 0, 40);
-
-			nBornes = 0;
-			colNumber = 0;
-
-			currentEntry++;
+		if ((c != ',') && (c != '\n')) {
+			buffer[fieldLength++] = c;
 		} else {
-			//printf("%c", c);
-			switch (nBornes) {
-				case 0:
-					current_id[colNumber] = c;
+
+			switch (currentField) {
+				case SOMMET_ID:
+					currentEntry = strtoll(buffer, &endptr, 10);
+
+					Sommets[currentEntry] = makeSommet(currentEntry, "", 0.0, 0.0, 0.0);
+					canLoad = false;
 					break;
 
-				case 1:
-					current_name[colNumber] = c;
+				case SOMMET_NAME:
+					strcpy(Sommets[currentEntry].name, buffer);
 					break;
 
-				case 2:
-					current_x[colNumber] = c;
+				case SOMMET_X:
+					Sommets[currentEntry].x = strtod(buffer, &endptr);
 					break;
 
-				case 3:
-					current_y[colNumber] = c;
+				case SOMMET_Y:
+					Sommets[currentEntry].y = strtod(buffer, &endptr);
 					break;
 
-				case 4:
-					current_z[colNumber] = c;
+				case SOMMET_Z:
+					Sommets[currentEntry].z = strtod(buffer, &endptr);
+					canLoad = true;
 					break;
 
 				default:
-					//fprintf(stderr, "nBornes invalid value, value must be < %u (is equals to %u)\n", NB_COLS, nBornes);
-					//exit(EXIT_FAILURE);
 					break;
 			}
 
-			colNumber++;
+			if (canLoad) {
+				Vertices->n_elements++;
+			}
+
+			memset(buffer, 0, 128);
+			fieldLength = 0;
+
+			if (c == '\n') {
+				currentField = 0;
+			} else {
+				currentField++;
+			}
 		}
 	}
 
-	//printf("Sortie de la while\n");
+	printf("Sortie de la while\n");
 
 	fclose(fp);
 
@@ -151,7 +131,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	diff = capacity - size;
 	diff_bytes = capacity_bytes - size_bytes;
 
-	printf("Been through %ld entries\n\nVertices capacity : %zu (%zu bytes)\nVertices size : %zu (%zu bytes)\nDifference : %zu (%zu bytes)\n", currentEntry, capacity, capacity_bytes, size, size_bytes, diff, diff_bytes);
+	//printf("Been through %ld entries\n\nVertices capacity : %zu (%zu bytes)\nVertices size : %zu (%zu bytes)\nDifference : %zu (%zu bytes)\n", currentEntry, capacity, capacity_bytes, size, size_bytes, diff, diff_bytes);
 }
 
 void LoadLinkFromTSV(string filename, List* Links) {
