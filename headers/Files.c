@@ -139,6 +139,9 @@ void LoadLinkFromTSV(string filename, List* Links) {
 
 	size_t n_entries = CountLinesInFile(filename);
 
+	char buffer[128];
+	memset(buffer, 0, 128);
+
 	if (n_entries == 0) {
 		return;
 	}
@@ -146,51 +149,66 @@ void LoadLinkFromTSV(string filename, List* Links) {
 	FILE* fp = fopen(filename, READONLY_MODE);
 
 	initializeLienList(Links, n_entries);
+	Lien* Liens = (Lien*)Links->elements;
 
-	uint8_t colNumber = 0;
-	s_id_t currentEntry = 0;
+	char c = 0;
 
-	Lien work = { 0, 0, 0 };
+	uint8_t currentEntry = 0;
+	uint8_t currentField = 0;
+	uint8_t fieldLength = 0;
 
-	s_id_t idA, idB;
-	TypeLien typeLien;
-
-	string current_idA = (string)calloc(25, sizeof(char));
-	string current_idB = (string)calloc(25, sizeof(char));
-	string current_TypeLien = (string)calloc(2, sizeof(char));
-
-	char c;
-
-	bool fileClosed = false;
+	bool canLoad = false;
 
 	while (c != EOF) {
-		c = getc(fp);
+		c = fgetc(fp);
 
 		if (c == EOF) {
-			fclose(fp);
-
-			free(current_idA);
-			free(current_idB);
-			free(current_TypeLien);
-
-			fileClosed = true;
-
 			break;
 		}
 
-		if (c == COL_SEP) {
-			colNumber++;
-			colNumber %= 3;
-		}
-		else if (c == '\n') {
-			colNumber = 0;
-			idA = strtoull(current_idA, &endptr, 10);
-			idB = strtoull(current_idB, &endptr, 10);
-			typeLien = strtol(current_TypeLien, &endptr, 10);
+		if ((c != ',') && (c != '\n')) {
+			buffer[fieldLength++] = c;
+		} else {
+			switch (currentField) {
+				case A_ID:
+					memset(&Liens[currentEntry], 0, Links->elementSize);
+
+					Liens[currentEntry].idA = strtoll(buffer, &endptr, 10);
+					canLoad = false;
+					break;
+
+				case B_ID:
+					Liens[currentEntry].idB = strtoll(buffer, &endptr, 10);
+					break;
+
+				case TYPE:
+					Liens[currentEntry].type = strtol(buffer, &endptr, 10);
+					canLoad = true;
+					break;
+
+				default:
+					break;
+			}
+
+			if (canLoad) {
+				Lien l = Liens[currentEntry];
+				printf("%lld -> %lld | %u\n", l.idA, l.idB, l.type);
+				Links->n_elements++;
+			}
+
+			memset(buffer, 0, 128);
+			fieldLength = 0;
+
+			if (c == '\n') {
+				currentField = 0;
+				currentEntry++;
+			} else {
+				currentField++;
+			}
 		}
 	}
 
-	if (!fileClosed) {
-		fclose(fp);
-	}
+	fclose(fp);
+
+	shrinkToFit(Links);
 }
