@@ -13,13 +13,13 @@ int main(void) {
 	Vertices.initialized = false;
 	Edges.initialized = false;
 
-	//printf("Loading vertices in %lX\n", (uint64_t)&Vertices);
-	//LoadVerticesFromTSV(sommetsFilename, &Vertices);
+	printf("Loading vertices in %lX\n", (uint64_t)&Vertices);
+	LoadVerticesFromTSV(sommetsFilename, &Vertices);
 
 	printf("Loading edges in %lX\n", (uint64_t)&Edges);
 	LoadLinkFromTSV(liensFilename, &Edges);
 
-	printf("Vertices loaded in %lX\n", (uint64_t)&Vertices);
+	freeLienList(&Edges);
 	freeSommetList(&Vertices);
 
 	return EXIT_SUCCESS;
