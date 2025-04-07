@@ -11,5 +11,11 @@ typedef enum {
 	SOMMET_Z = 4
 } Sommet_Fields;
 
+typedef enum {
+	A_ID = 0,
+	B_ID = 1,
+	TYPE = 2
+} Liens_Fields;
+
 void LoadVerticesFromTSV(string filename, List* Vertices);
 void LoadLinkFromTSV(string filename, List* Links);
