@@ -3,13 +3,13 @@
 #include "commons.h"
 
 struct List {
-	size_t capacity;
-	size_t n_elements;
-	size_t elementSize;
-	bool fragmented;
-	bool initialized;
+	size_t capacity; // List capacity in number of elements
+	size_t n_elements; // Actual number of elements
+	size_t elementSize; // Size of elements in bytes
+	bool fragmented; // Is the list fragmented
+	bool initialized; // Is the list initialized
 
-	void* elements;
+	void* elements; // The actual array
 };
 
 typedef struct List List;
