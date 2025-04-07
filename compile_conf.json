@@ -1,8 +1,8 @@
 {
-	"Compiler": "g++",
-	"Parameters": ["-std=c++23", "-Oz", "-s", "-m64", "-march=x86-64", "-fdata-sections", "-ffunction-sections", "-Wl,--gc-sections"],
+	"Compiler": "gcc",
+	"Parameters": ["-std=c23", "-Oz", "-s", "-m64", "-march=x86-64", "-fdata-sections", "-ffunction-sections", "-Wl,--gc-sections"],
 	"OutputPath": "releases/",
 	"OutputName": "Dijkstra",
-	"Sources": ["main.cpp", "headers/DijkstraTypes.cpp", "headers/FileInteractions.cpp"],
+	"Sources": ["main.c", "headers/*.c"],
 	"UseMath": true
 }
