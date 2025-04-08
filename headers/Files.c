@@ -116,9 +116,9 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 
 	shrinkToFit(Vertices);
 
+	/*
 	size_t capacity, capacity_bytes, size, size_bytes, diff, diff_bytes;
 
-	/*
 	capacity = Vertices->capacity;
 	capacity_bytes = capacity * (Vertices->elementSize + SOMMET_NAME_LENGTH);
 
