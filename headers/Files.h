@@ -4,6 +4,11 @@
 #include "list.h"
 
 typedef enum {
+	CSV = 0,
+	TSV = 1
+} FileType;
+
+typedef enum {
 	SOMMET_ID = 0,
 	SOMMET_NAME = 1,
 	SOMMET_X = 2,
@@ -17,5 +22,5 @@ typedef enum {
 	TYPE = 2
 } Liens_Fields;
 
-void LoadVerticesFromTSV(string filename, List* Vertices);
-void LoadLinkFromTSV(string filename, List* Links);
+void LoadVerticesFromTSV(string filename, List* Vertices, FileType fileType);
+void LoadLinkFromTSV(string filename, List* Links, FileType fileType);

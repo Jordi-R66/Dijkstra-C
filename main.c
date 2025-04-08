@@ -9,15 +9,17 @@ int main(void) {
 
 	List Vertices;
 	List Edges;
+	FileType VerticesType = CSV;
+	FileType EdgesType = CSV;
 
 	Vertices.initialized = false;
 	Edges.initialized = false;
 
 	//printf("Loading vertices in %lX\n", (uint64_t)&Vertices);
-	LoadVerticesFromTSV(sommetsFilename, &Vertices);
+	LoadVerticesFromTSV(sommetsFilename, &Vertices, VerticesType);
 
 	//printf("Loading edges in %lX\n", (uint64_t)&Edges);
-	LoadLinkFromTSV(liensFilename, &Edges);
+	LoadLinkFromTSV(liensFilename, &Edges, EdgesType);
 
 	freeLienList(&Edges);
 	freeSommetList(&Vertices);

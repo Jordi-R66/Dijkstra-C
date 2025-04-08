@@ -25,7 +25,7 @@ size_t CountLinesInFile(string filename) {
 	return n_entries;
 }
 
-void LoadVerticesFromTSV(string filename, List* Vertices) {
+void LoadVerticesFromTSV(string filename, List* Vertices, FileType fileType) {
 	char* endptr;
 
 	char buffer[128];
@@ -53,7 +53,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	uint8_t currentField = 0;
 	uint8_t fieldLength = 0;
 
-	const char field_sep = ',';
+	const char field_sep = fileType == CSV ? ',' : '\t';
 	bool canLoad = false;
 
 	while (c != EOF) {
@@ -132,7 +132,7 @@ void LoadVerticesFromTSV(string filename, List* Vertices) {
 	*/
 }
 
-void LoadLinkFromTSV(string filename, List* Links) {
+void LoadLinkFromTSV(string filename, List* Links, FileType fileType) {
 	char* endptr;
 
 	size_t n_entries = CountLinesInFile(filename);
@@ -155,7 +155,7 @@ void LoadLinkFromTSV(string filename, List* Links) {
 	uint8_t currentField = 0;
 	uint8_t fieldLength = 0;
 
-	const char field_sep = ',';
+	const char field_sep = fileType == CSV ? ',' : '\t';
 	bool canLoad = false;
 
 	while (c != EOF) {
