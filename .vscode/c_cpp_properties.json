@@ -10,7 +10,8 @@
             "cStandard": "c17",
             "compilerArgs": [
                 "-m64"
-            ]
+            ],
+            "intelliSenseMode": "linux-gcc-x64"
         },
         {
             "name": "Linux32",
@@ -22,7 +23,8 @@
             "cStandard": "c17",
             "compilerArgs": [
                 "-m32"
-            ]
+            ],
+            "intelliSenseMode": "linux-gcc-x86"
         }
     ],
     "version": 4
