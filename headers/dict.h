@@ -9,6 +9,6 @@ typedef struct {
 } Dict;
 
 void initDict(Dict* dict, size_t keySize, size_t valSize, size_t n_records);
-void* getValue(void* key);
-void addValue(void* key, void* value);
-void removeValue(void* key);
+void* getValue(Dict* dict, void* key);
+void addValue(Dict* dict, void* key, void* value);
+void removeValue(Dict* dict, void* key);
