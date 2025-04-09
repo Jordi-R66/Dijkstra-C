@@ -18,6 +18,7 @@ void* getValue(Dict* dict, void* key) {
 
 		if (memcmp(key, keyIndex, DeltaKeys)) {
 			val = getElement(&dict->values, i);
+			break;
 		}
 	}
 
