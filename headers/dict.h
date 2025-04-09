@@ -15,8 +15,14 @@ typedef struct dict {
 } Dict;
 
 void initDict(Dict* dict, size_t keySize, size_t valSize, size_t n_records);
+
+void setPair(Dict* dict, void* currentKey, KeyValuePair_t newKvp);
+void setValue(Dict* dict, void* key, void* newValue);
 void* getValue(Dict* dict, void* key);
+
 void addPair(Dict* dict, KeyValuePair_t* kvp);
 void addValue(Dict* dict, void* key, void* value);
+
 void removeValue(Dict* dict, void* key);
+
 void freeDict(Dict* dict, bool freeKeys, bool freeValues);
