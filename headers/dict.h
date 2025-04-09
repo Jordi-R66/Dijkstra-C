@@ -2,12 +2,12 @@
 
 #include "list.h"
 
-typedef struct {
+typedef struct kvp {
 	void* key;
 	void* value;
 } KeyValuePair_t;
 
-typedef struct {
+typedef struct dict {
 	List pairs; // List of KeyValuePair_t
 
 	size_t keySize; // Size of the key in bytes
@@ -19,3 +19,4 @@ void* getValue(Dict* dict, void* key);
 void addPair(Dict* dict, KeyValuePair_t kvp);
 void addValue(Dict* dict, void* key, void* value);
 void removeValue(Dict* dict, void* key);
+void freeDict(Dict* dict);
