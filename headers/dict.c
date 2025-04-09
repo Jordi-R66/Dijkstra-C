@@ -34,3 +34,14 @@ void addValue(Dict* dict, void* key, void* value) {
 
 	addPair(dict, &kvp);
 }
+
+void removePair(Dict* dict, void* key) {
+	for (size_t i=0; i < dict->pairs.n_elements; i++) {
+		KeyValuePair_t* kvp_ptr = (KeyValuePair_t*)getElement(&dict->pairs, i);
+
+		if (memcmp(key, kvp_ptr->key, dict->keySize)) {
+			removeElement(&dict->pairs, i, true);
+			break;
+		}
+	}
+}
