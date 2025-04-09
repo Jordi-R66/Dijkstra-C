@@ -16,5 +16,6 @@ typedef struct {
 
 void initDict(Dict* dict, size_t keySize, size_t valSize, size_t n_records);
 void* getValue(Dict* dict, void* key);
+void addPair(Dict* dict, KeyValuePair_t kvp);
 void addValue(Dict* dict, void* key, void* value);
 void removeValue(Dict* dict, void* key);
