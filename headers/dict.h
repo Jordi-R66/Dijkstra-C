@@ -3,9 +3,15 @@
 #include "list.h"
 
 typedef struct {
-	List keys;
-	List values;
-	size_t capacity;
+	void* key;
+	void* value;
+} KeyValuePair_t;
+
+typedef struct {
+	List pairs; // List of KeyValuePair_t
+
+	size_t keySize; // Size of the key in bytes
+	size_t valSize; // Size of the value in bytes
 } Dict;
 
 void initDict(Dict* dict, size_t keySize, size_t valSize, size_t n_records);

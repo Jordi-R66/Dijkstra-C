@@ -1,10 +1,10 @@
 #include "dict.h"
 
 void initDict(Dict* dict, size_t keySize, size_t valSize, size_t initCapacity) {
-	initializeList(&dict->keys, initCapacity, keySize);
-	initializeList(&dict->values, initCapacity, valSize);
+	initializeList(&dict->pairs, initCapacity, sizeof(KeyValuePair_t));
 
-	dict->capacity = initCapacity;
+	dict->keySize = keySize;
+	dict->valSize = valSize;
 }
 
 void* getValue(Dict* dict, void* key) {
