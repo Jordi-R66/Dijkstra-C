@@ -7,6 +7,21 @@ void initDict(Dict* dict, size_t keySize, size_t valSize, size_t initCapacity) {
 	dict->valSize = valSize;
 }
 
+
+void setPair(Dict* dict, void* currentKey, KeyValuePair_t newKvp) {
+	for (size_t i=0; i < dict->pairs.n_elements; i++) {
+		KeyValuePair_t* kvp_ptr = (KeyValuePair_t*)getElement(&dict->pairs, i);
+
+		if (memcmp(currentKey, kvp_ptr->key, dict->keySize)) {
+			kvp_ptr->key = newKvp.key;
+			kvp_ptr->value = newKvp.value;
+			break;
+		}
+	}
+}
+
+void setValue(Dict* dict, void* key, void* newValue);
+
 void* getValue(Dict* dict, void* key) {
 	void* val = NULL;
 
