@@ -14,7 +14,7 @@ void preInit(string verticesFilename, string edgesFilename) {
 	Edges.initialized = false;
 
 	LoadVerticesFromTSV(verticesFilename, &Vertices, VerticesType);
-	LoadEdgesFromTSV(edgesFilename, &Edges, EdgesType);
+	LoadLinkFromTSV(edgesFilename, &Edges, EdgesType);
 
 	size_t TotalVertices = Vertices.n_elements;
 	size_t TotalEdges = Edges.n_elements;
