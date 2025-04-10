@@ -20,7 +20,11 @@ void setPair(Dict* dict, void* currentKey, KeyValuePair_t newKvp) {
 	}
 }
 
-void setValue(Dict* dict, void* key, void* newValue);
+void setValue(Dict* dict, void* key, void* newValue) {
+	KeyValuePair_t kvp = {key, newValue};
+
+	setPair(dict, key, kvp);
+}
 
 void* getValue(Dict* dict, void* key) {
 	void* val = NULL;
