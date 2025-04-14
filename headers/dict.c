@@ -81,14 +81,7 @@ void removePair(Dict* dict, void* key) {
 void freeDict(Dict* dict, bool freeKeys, bool freeValues) {
 	for (size_t i=0; (i < dict->pairs.n_elements) && ((freeKeys) || (freeValues)); i++) {
 		KeyValuePair_t* kvp_ptr = (KeyValuePair_t*)getElement(&dict->pairs, i);
-
-		if (freeKeys) {
-			free(kvp_ptr->key);
-		}
-
-		if (freeValues) {
-			free(kvp_ptr->value);
-		}
+		removePair(dict, kvp_ptr->key);
 	}
 
 	freeList(&dict->pairs);
