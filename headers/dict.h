@@ -20,8 +20,7 @@ void setPair(Dict* dict, void* currentKey, KeyValuePair_t newKvp);
 void setValue(Dict* dict, void* key, void* newValue);
 void* getValue(Dict* dict, void* key);
 
-void addPair(Dict* dict, KeyValuePair_t kvp);
-void addValue(Dict* dict, void* key, void* value);
+void addEntry(Dict* dict, void* key, void* value);
 
 void removeValue(Dict* dict, void* key);
 

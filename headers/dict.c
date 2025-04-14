@@ -45,11 +45,22 @@ void addPair(Dict* dict, KeyValuePair_t kvp) {
 	addElement(&dict->pairs, &kvp);
 }
 
-void addValue(Dict* dict, void* key, void* value) {
+void addEntry(Dict* dict, void* key, void* value) {
 	KeyValuePair_t kvp;
 
 	kvp.key = key;
 	kvp.value = value;
+
+	// D'abord on initialise deux arrays, pour respectivement stocker la valeur de la clé, et la valeur elle-même
+	void* temp_key = calloc(1, dict->keySize);
+	void* temp_val = calloc(1, dict->valSize);
+
+	// Ensuite on copie le contenu
+	memcpy(temp_key, key, dict->keySize);
+	memcpy(temp_val, value, dict->valSize);
+
+	kvp.key = temp_key;
+	kvp.value = temp_val;
 
 	addPair(dict, kvp);
 }
