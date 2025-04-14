@@ -70,6 +70,8 @@ void removePair(Dict* dict, void* key) {
 		KeyValuePair_t* kvp_ptr = (KeyValuePair_t*)getElement(&dict->pairs, i);
 
 		if (memcmp(key, kvp_ptr->key, dict->keySize)) {
+			free(kvp_ptr->key);
+			free(kvp_ptr->value);
 			removeElement(&dict->pairs, i, true);
 			break;
 		}
