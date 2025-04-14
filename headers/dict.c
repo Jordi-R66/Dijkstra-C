@@ -41,8 +41,8 @@ void* getValue(Dict* dict, void* key) {
 	return val;
 }
 
-void addPair(Dict* dict, KeyValuePair_t* kvp) {
-	addElement(&dict->pairs, kvp);
+void addPair(Dict* dict, KeyValuePair_t kvp) {
+	addElement(&dict->pairs, &kvp);
 }
 
 void addValue(Dict* dict, void* key, void* value) {
@@ -51,7 +51,7 @@ void addValue(Dict* dict, void* key, void* value) {
 	kvp.key = key;
 	kvp.value = value;
 
-	addPair(dict, &kvp);
+	addPair(dict, kvp);
 }
 
 void removePair(Dict* dict, void* key) {
