@@ -7,7 +7,8 @@
 	"settings": {
 		"files.associations": {
 			"*.py3": "python",
-			"stdbool.h": "c"
+			"stdbool.h": "c",
+			"stdint.h": "c"
 		}
 	}
 }
