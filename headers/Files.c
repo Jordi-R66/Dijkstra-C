@@ -115,21 +115,6 @@ void LoadVerticesFromTSV(string filename, List* Vertices, FileType fileType) {
 	fclose(fp);
 
 	shrinkToFit(Vertices);
-
-	/*
-	size_t capacity, capacity_bytes, size, size_bytes, diff, diff_bytes;
-
-	capacity = Vertices->capacity;
-	capacity_bytes = capacity * (Vertices->elementSize + SOMMET_NAME_LENGTH);
-
-	size = Vertices->n_elements;
-	size_bytes = size * (Vertices->elementSize + SOMMET_NAME_LENGTH);
-
-	diff = capacity - size;
-	diff_bytes = capacity_bytes - size_bytes;
-
-	printf("Been through %ld entries\n\nVertices capacity : %zu (%zu bytes)\nVertices size : %zu (%zu bytes)\nDifference : %zu (%zu bytes)\n", currentEntry, capacity, capacity_bytes, size, size_bytes, diff, diff_bytes);
-	*/
 }
 
 void LoadLinkFromTSV(string filename, List* Links, FileType fileType) {
